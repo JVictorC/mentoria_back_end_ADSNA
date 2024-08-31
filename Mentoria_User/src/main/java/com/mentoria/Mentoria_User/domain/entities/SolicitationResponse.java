@@ -16,8 +16,9 @@ public class SolicitationResponse {
     @Column(name = "response_id")
     private Long responseId;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(name = "request_id")
     private Long requestId;
@@ -28,7 +29,4 @@ public class SolicitationResponse {
     @Column(name = "response_segment")
     private String responseSegment;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 }

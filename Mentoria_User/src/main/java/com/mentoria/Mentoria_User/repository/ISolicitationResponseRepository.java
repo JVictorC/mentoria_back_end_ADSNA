@@ -5,22 +5,23 @@ import com.mentoria.Mentoria_User.domain.entities.SolicitationResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface ISolicitationResponseRepository extends JpaRepository<SolicitationResponse, Long> {
 
-    @Query("select new com.mentoria.Mentoria_User.domain.dto.SolicitationRequestDTO (s.userId, s.requestTitle,"
-            + " s.requestSegment, s.requestStatus)"
-            + " from SolicitationRequest s where s.requestSegment like %:segment%")
+    @Query("select new com.mentoria.Mentoria_User.domain.dto.SolicitationResponseDTO ("
+            + " s.requestId ,s.user.userId, s.requestId, s.responseStatus, s.responseSegment)"
+            + " from SolicitationResponse s"
+            + " where s.responseSegment like %:segment%")
     List<SolicitationResponseDTO> findByRequestBySegment(@Param("segment") String segment);
 
-    @Query("select new com.mentoria.Mentoria_User.domain.dto.SolicitationRequestDTO(s.user.userId, s.requestTitle,"
-            + " s.requestSegment, s.requestStatus)"
-            + " from SolicitationRequest s"
+    @Query("select new com.mentoria.Mentoria_User.domain.dto.SolicitationResponseDTO("
+            + " s.requestId ,s.user.userId, s.requestId, s.responseStatus, s.responseSegment)"
+            + " from SolicitationResponse s"
             + " where s.user.userRA = :ra")
     List<SolicitationResponseDTO> findRequestByRa(@Param("ra") String ra);
-
-
 
 }

@@ -42,4 +42,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<SolicitationResponse> responses;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private PasswordToken passwordToken;
+
 }

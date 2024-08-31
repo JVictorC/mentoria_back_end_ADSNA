@@ -1,35 +1,31 @@
 package com.mentoria.Mentoria_User.domain.entities;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "tb_request")
-public class SolicitationRequest {
+@Table(name = "tb_token")
+public class PasswordToken {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "request_id")
-    private Long requestId;
+    private Long id;
 
-    @ManyToOne
+    private String token;
+
+    @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "request_title")
-    private String requestTitle;
-
-    @Column(name = "request_segment")
-    private String requestSegment;
-
-    @Column(name = "request_status")
-    private Integer requestStatus;
-
+    private LocalDateTime expirationDate;
 }
