@@ -18,7 +18,7 @@ public interface ISolicitationRequestRepository extends JpaRepository<Solicitati
     void updateRequestStatus(@Param("id") Long id, @Param("status") Integer status);
 
 
-    @Query("select new com.mentoria.Mentoria_User.domain.dto.SolicitationRequestDTO (s.userId, s.requestTitle,"
+    @Query("select new com.mentoria.Mentoria_User.domain.dto.SolicitationRequestDTO (s.user.userId, s.requestTitle,"
             + " s.requestSegment, s.requestStatus)"
             + " from SolicitationRequest s where s.requestSegment like %:segment%")
     List<SolicitationRequestDTO> findByRequestBySegment(@Param("segment") String segment);

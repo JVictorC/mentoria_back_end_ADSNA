@@ -17,7 +17,7 @@ public class UserService {
     private IUserRepository repository;
 
     public UserDTO findByUsername(String username) {
-        return  buildUserToUserDTO(repository.findByName(username));
+        return  buildUserToUserDTO(repository.findByUserName(username));
     }
 
     public UserDTO insert(UserDTO user) {

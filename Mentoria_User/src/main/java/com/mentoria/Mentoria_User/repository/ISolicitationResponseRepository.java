@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ISolicitationResponseRepository extends JpaRepository<SolicitationResponse, Long> {
 
-    @Query("select new com.mentoria.Mentoria_User.domain.dto.SolicitationRequestDTO (s.userId, s.requestTitle,"
+    @Query("select new com.mentoria.Mentoria_User.domain.dto.SolicitationRequestDTO (s.user.userId, s.requestTitle,"
             + " s.requestSegment, s.requestStatus)"
             + " from SolicitationRequest s where s.requestSegment like %:segment%")
     List<SolicitationResponseDTO> findByRequestBySegment(@Param("segment") String segment);

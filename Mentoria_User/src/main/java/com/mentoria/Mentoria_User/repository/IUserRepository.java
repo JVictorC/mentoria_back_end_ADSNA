@@ -9,12 +9,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IUserRepository extends JpaRepository<User, Long> {
 
-    User findByName(String username);
+    User findByUserName(String username);
 
     @Query("UPDATE User u SET u.userName = :nome, u.userEmail = :email WHERE u.userId = :id")
     User updateProfile(@Param("id") Long id, @Param("nome") String nome, @Param("email") String email);
 
-    @Query("UPDATE User u SET u.userStatus = false WHERE u.userId = :id")
+    @Query("UPDATE User u SET u.userStatus = 0 WHERE u.userId = :id")
     User deactivationProfile(@Param("id") Long id);
 
     @Query("UPDATE User u SET u.userPassword = :password WHERE u.userId = :id")

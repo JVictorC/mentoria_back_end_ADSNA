@@ -16,9 +16,6 @@ public class SolicitationResponse {
     @Column(name = "response_id")
     private Long responseId;
 
-    @Column(name = "user_id")
-    private Long userId;
-
     @Column(name = "request_id")
     private Long requestId;
 
